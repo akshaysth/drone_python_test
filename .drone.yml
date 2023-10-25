@@ -6,6 +6,7 @@ steps:
   - name: greeting
     image: python:3
     commands:
+      - pip3 install --upgrade pip setuptools wheel requests
       - echo hello
       - echo world
       - python hello.py
