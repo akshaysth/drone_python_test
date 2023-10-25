@@ -10,9 +10,28 @@ steps:
       - echo hello
       - echo world
       - python hello.py
-#      - python test.py
-  - name: send rocketchat notification
-    image: python:3
+  #      - python test.py
+  - name: notification
+    image: rmilewski/drone-rocket:latest
+    when:
+      status: [success, failure]
     settings:
-    commands:
-      - curl -X POST -H 'Content-Type: application/json' --data '{"text":"{{ repo.name }} build status\: {{build.status}}"' 'https\://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8'
+      webhook:
+        from_secret: https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8
+      channel: devops_alerts
+      username: DroneCI
+      color:
+        - value: green
+          when:
+            DRONE_BUILD_STATUS: success
+        - value: red
+          when:
+            DRONE_BUILD_STATUS: failure
+      message:
+        - value: "Build: ${DRONE_BUILD_NUMBER} succeeded!"
+          when:
+            DRONE_BUILD_STATUS: success
+        - value: "Build: ${DRONE_BUILD_NUMBER} failed!"
+      fields:
+        - title: Author
+          value: ${DRONE_COMMIT_AUTHOR}
