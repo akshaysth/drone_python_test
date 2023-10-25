@@ -9,8 +9,3 @@ steps:
       - echo hello
       - echo world
       - python hello.py
-trigger:
-  event:
-    - cron
-  cron:
-    - hourly
