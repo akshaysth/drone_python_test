@@ -7,6 +7,6 @@ HEADERS = {
 }
 
 
-requests.post(url=URL, headers=HEADERS, body=DATA)
+requests.post(url=URL, headers=HEADERS, data=DATA)
 
 print('test')
