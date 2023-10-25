@@ -1,6 +1,6 @@
 import requests
 
-URL = "https://hooks.slack.com/services/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"
+URL = "https://hooks.slack.com/services/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"
 DATA = {"text": "Hello, World!"}
 HEADERS = {
     "Content-Type": "application/json",
