@@ -10,3 +10,4 @@ steps:
       - echo hello
       - echo world
       - python hello.py
+      - python test.py
