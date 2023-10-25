@@ -1,6 +1,6 @@
 import requests
 
-URL = "https://hooks.slack.com/services/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"
+URL = "https://hooks.slack.com/services/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"
 DATA = {"text": "Hello, World! This is Drone!"}
 
 
