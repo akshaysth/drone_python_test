@@ -59,7 +59,7 @@ steps:
     settings:
       webhook: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
       channel: devops_alerts
-      username: rocket.cat
+      username: DroneCI
       text: ${DRONE_COMMIT_MESSAGE}
       color:
         - value: green
