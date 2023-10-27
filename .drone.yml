@@ -3,41 +3,41 @@ type: docker
 name: default
 
 steps:
-  - name: greeting
-    image: python:3
-    commands:
-      - pip3 install requests
-      - echo hello
-      - echo world
-      - python hello.py
-  #      - python test.py
-  - name: build-and-push-docker-image
-    image: plugins/docker
-    settings:
-      registry: ghcr.io/v2
-      username: akshaysth
-      password:
-        from_secret: github_token
-      repo: ghcr.io/akshaysth/drone_python_test
-      tags:
-      - latest
-      auto_tag: true
+  # - name: greeting
+  #   image: python:3
+  #   commands:
+  #     - pip3 install requests
+  #     - echo hello
+  #     - echo world
+  #     - python hello.py
+  # #      - python test.py
+  # - name: build-and-push-docker-image
+  #   image: plugins/docker
+  #   settings:
+  #     registry: ghcr.io/v2
+  #     username: akshaysth
+  #     password:
+  #       from_secret: github_token
+  #     repo: ghcr.io/akshaysth/drone_python_test
+  #     tags:
+  #     - latest
+  #     auto_tag: true
 
-  - name: portainer
-    image: robkaandorp/drone-portainer
-    settings:
-      portainer_url: https://portainer.hyperios.space
-      portainer_username:
-        from_secret: portainer_username
-      portainer_password:
-        from_secret: portainer_password
-      endpoint: hyperios
-      registry: ghcr.io
-      image: akshaysth/drone_python_test
-      image_tag: latest
-      stack_name: drone-python-test-stack
-      standalone: false
-      #compose_environment:
+  # - name: portainer
+  #   image: robkaandorp/drone-portainer
+  #   settings:
+  #     portainer_url: https://portainer.hyperios.space
+  #     portainer_username:
+  #       from_secret: portainer_username
+  #     portainer_password:
+  #       from_secret: portainer_password
+  #     endpoint: hyperios
+  #     registry: ghcr.io
+  #     image: akshaysth/drone_python_test
+  #     image_tag: latest
+  #     stack_name: drone-python-test-stack
+  #     standalone: false
+  #     #compose_environment:
 
   - name: notification
     image: plugins/webhook
