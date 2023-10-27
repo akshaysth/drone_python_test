@@ -22,50 +22,50 @@ steps:
       tags:
       - latest
 
-  - name: notification
-    image: plugins/webhook
-    settings:
-      urls: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
-      template: |
-        {
-          "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}"
-        }
-  # - name: portainer
-  #   image: robkaandorp/drone-portainer
+  # - name: notification
+  #   image: plugins/webhook
   #   settings:
-  #     portainer_url: https://portainer.hyperios.space
-  #     portainer_username:
-  #       from_secret: portainer_username
-  #     portainer_password:
-  #       from_secret: portainer_password
-  #     endpoint: hyperios
-  #     registry: ghcr.io
-  #     image: akshaysth/drone_python_test
-  #     image_tag: ${DRONE_COMMIT_BRANCH}-${DRONE_BUILD_NUMBER}
-  #     stack_name: drone-python-test
-  #     standalone: false
-  #     #compose_environment:
-  #  - name: notification
-  #    image: rmilewski/drone-rocket:latest
-  #    when:
-  #      status: [success, failure]
-  #    settings:
-  #      webhook:
-  #        from_secret: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
-  #      channel: devops_alerts
-  #      username: DroneCI
-  #      color:
-  #        - value: green
-  #          when:
-  #            DRONE_BUILD_STATUS: success
-  #        - value: red
-  #          when:
-  #            DRONE_BUILD_STATUS: failure
-  #      message:
-  #        - value: "Build: ${DRONE_BUILD_NUMBER} succeeded!"
-  #          when:
-  #            DRONE_BUILD_STATUS: success
-  #        - value: "Build: ${DRONE_BUILD_NUMBER} failed!"
-  #      fields:
-  #        - title: Author
-  #          value: ${DRONE_COMMIT_AUTHOR}
+  #     urls: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
+  #     template: |
+  #       {
+  #         "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}"
+  #       }
+  - name: portainer
+    image: robkaandorp/drone-portainer
+    settings:
+      portainer_url: https://portainer.hyperios.space
+      portainer_username:
+        from_secret: portainer_username
+      portainer_password:
+        from_secret: portainer_password
+      endpoint: hyperios
+      registry: ghcr.io
+      image: akshaysth/drone_python_test
+      image_tag: ${DRONE_COMMIT_BRANCH}-${DRONE_BUILD_NUMBER}
+      stack_name: drone-python-test
+      standalone: false
+      #compose_environment:
+  - name: build-notification
+    image: rmilewski/drone-rocket:latest
+    when:
+      status: [success, failure]
+    settings:
+      webhook:
+        from_secret: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
+      channel: devops_alerts
+      username: DroneCI
+      color:
+        - value: green
+          when:
+            DRONE_BUILD_STATUS: success
+        - value: red
+          when:
+            DRONE_BUILD_STATUS: failure
+      message:
+        - value: "Build: ${DRONE_BUILD_NUMBER} succeeded!"
+          when:
+            DRONE_BUILD_STATUS: success
+        - value: "Build: ${DRONE_BUILD_NUMBER} failed!"
+      fields:
+        - title: Author
+          value: ${DRONE_COMMIT_AUTHOR}
