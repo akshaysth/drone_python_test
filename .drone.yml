@@ -14,11 +14,11 @@ steps:
   - name: build-and-push-docker-image
     image: plugins/docker
     settings:
-      registry: ghcr.io/
+      registry: ghcr.io/v2
       username: akshaysth
       password:
         from_secret: github_token
-      repo: github.com/akshaysth/drone_python_test
+      repo: ghcr.io/akshaysth/drone_python_test
       tags:
       - latest
 
