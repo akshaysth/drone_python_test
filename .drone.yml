@@ -60,7 +60,7 @@ steps:
       webhook:
         from_secret: rocketchat_drone_webhook
       channel: devops_alerts
-      username: DroneCI
+      username: rocket.cat
       text: ${DRONE_COMMIT_MESSAGE}
       link: ${DRONE_BUILD_URL}
       color:
