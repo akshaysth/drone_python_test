@@ -21,6 +21,7 @@ steps:
       repo: ghcr.io/akshaysth/drone_python_test
       tags:
       - latest
+      auto_tag: true
 
   # - name: notification
   #   image: plugins/webhook
@@ -53,7 +54,7 @@ steps:
       webhook:
         from_secret: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
       channel: devops_alerts
-      username: DroneCI
+      username: rocket.cat
       color:
         - value: green
           when:
