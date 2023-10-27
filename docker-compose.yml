@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+  drone-python-test-service:
+    image: $imageName
+    restart: always

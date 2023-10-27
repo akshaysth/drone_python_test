@@ -42,8 +42,8 @@ steps:
       endpoint: hyperios
       registry: ghcr.io
       image: akshaysth/drone_python_test
-      image_tag: ${DRONE_COMMIT_BRANCH}-${DRONE_BUILD_NUMBER}
-      stack_name: drone-python-test
+      image_tag: latest
+      stack_name: drone-python-test-stack
       standalone: false
       #compose_environment:
   - name: build-notification
