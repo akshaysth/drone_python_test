@@ -2,6 +2,10 @@ kind: pipeline
 type: docker
 name: default
 
+volumes:
+- name: dockersock
+  path: /var/run/docker.sock
+
 steps:
   - name: greeting
     image: python:3
@@ -11,18 +15,19 @@ steps:
       - echo world
       - python hello.py
   #      - python test.py
-  - name: docker
+  - name: build-and-push-docker-image
     image: plugins/docker
+    volumes:
+    - name: dockersock
+      path: "/var/run/docker.sock"
     settings:
-      registry: https://ghcr.io
+      registry: https://ghcr.io/v2
       username: akshaysth
       password:
         from_secret: github_token
       repo: akshaysth/drone_python_test
       tags:
       - latest
-      - main
-
 
   - name: notification
     image: plugins/webhook
