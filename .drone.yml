@@ -18,7 +18,7 @@ steps:
       username: akshaysth
       password:
         from_secret: github_token
-      repo: ghcr.io/akshaysth/drone_python_test
+      repo: github.com/akshaysth/drone_python_test
       tags:
       - latest
 
