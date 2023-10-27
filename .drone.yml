@@ -14,7 +14,7 @@ steps:
   - name: docker
     image: plugins/docker
     settings:
-      registry: ghcr.io
+      registry: https://ghcr.io
       username: akshaysth
       password:
         from_secret: github_token
