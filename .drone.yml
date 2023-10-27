@@ -69,11 +69,11 @@ steps:
       #   - value: red
       #     when:
       #       DRONE_BUILD_STATUS: failure
-      # message:
-      #   - value: "Build: ${DRONE_BUILD_NUMBER} succeeded!"
-      #     when:
-      #       DRONE_BUILD_STATUS: success
-      #   - value: "Build: ${DRONE_BUILD_NUMBER} failed!"
+      message:
+        - value: "Build: ${DRONE_BUILD_NUMBER} succeeded!"
+          when:
+            DRONE_BUILD_STATUS: success
+        - value: "Build: ${DRONE_BUILD_NUMBER} failed!"
       # fields:
       #   - title: Author
       #     value: ${DRONE_COMMIT_AUTHOR}
