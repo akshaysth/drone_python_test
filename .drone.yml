@@ -39,40 +39,41 @@ steps:
   #     standalone: false
   #     #compose_environment:
 
-  - name: notification
-    image: plugins/webhook
-    settings:
-      urls: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
-      template: >
-        {
-          "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}",
-          "attachments": [
-            "title": "Drone CI"
-          ]
-        }
-
-
-  # - name: build-notification
-  #   image: rmilewski/drone-rocket:latest
-  #   when:
-  #     status: [success, failure]
+  # - name: notification
+  #   image: plugins/webhook
   #   settings:
-  #     webhook:
-  #       from_secret: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
-  #     channel: devops_alerts
-  #     username: rocket.cat
-  #     color:
-  #       - value: green
-  #         when:
-  #           DRONE_BUILD_STATUS: success
-  #       - value: red
-  #         when:
-  #           DRONE_BUILD_STATUS: failure
-  #     message:
-  #       - value: "Build: ${DRONE_BUILD_NUMBER} succeeded!"
-  #         when:
-  #           DRONE_BUILD_STATUS: success
-  #       - value: "Build: ${DRONE_BUILD_NUMBER} failed!"
-  #     fields:
-  #       - title: Author
-  #         value: ${DRONE_COMMIT_AUTHOR}
+  #     urls: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
+  #     template: >
+  #       {
+  #         "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}",
+  #         "attachments": [
+  #           "title": "Drone CI"
+  #         ]
+  #       }
+
+
+  - name: build-notification
+    image: rmilewski/drone-rocket:latest
+    when:
+      status: [success, failure]
+    settings:
+      webhook:
+        from_secret: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
+      channel: devops_alerts
+      username: rocket.cat
+      text: ${DRONE_COMMIT_MESSAGE}
+      # color:
+      #   - value: green
+      #     when:
+      #       DRONE_BUILD_STATUS: success
+      #   - value: red
+      #     when:
+      #       DRONE_BUILD_STATUS: failure
+      # message:
+      #   - value: "Build: ${DRONE_BUILD_NUMBER} succeeded!"
+      #     when:
+      #       DRONE_BUILD_STATUS: success
+      #   - value: "Build: ${DRONE_BUILD_NUMBER} failed!"
+      # fields:
+      #   - title: Author
+      #     value: ${DRONE_COMMIT_AUTHOR}
