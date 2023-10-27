@@ -2,10 +2,6 @@ kind: pipeline
 type: docker
 name: default
 
-volumes:
-- name: dockersock
-  path: /var/run/docker.sock
-
 steps:
   - name: greeting
     image: python:3
@@ -17,9 +13,6 @@ steps:
   #      - python test.py
   - name: build-and-push-docker-image
     image: plugins/docker
-    volumes:
-    - name: dockersock
-      path: "/var/run/docker.sock"
     settings:
       registry: https://ghcr.io/v2
       username: akshaysth
