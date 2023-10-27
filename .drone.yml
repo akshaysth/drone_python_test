@@ -3,14 +3,14 @@ type: docker
 name: default
 
 steps:
-  # - name: greeting
-  #   image: python:3
-  #   commands:
-  #     - pip3 install requests
-  #     - echo hello
-  #     - echo world
-  #     - python hello.py
-  # #      - python test.py
+  - name: greeting
+    image: python:3
+    commands:
+      - pip3 install requests
+      - echo hello
+      - echo world
+      - python hello.py
+  #      - python test.py
   # - name: build-and-push-docker-image
   #   image: plugins/docker
   #   settings:
@@ -61,18 +61,18 @@ steps:
       channel: devops_alerts
       username: rocket.cat
       text: ${DRONE_COMMIT_MESSAGE}
-      # color:
-      #   - value: green
-      #     when:
-      #       DRONE_BUILD_STATUS: success
-      #   - value: red
-      #     when:
-      #       DRONE_BUILD_STATUS: failure
+      color:
+        - value: green
+          when:
+            DRONE_BUILD_STATUS: success
+        - value: red
+          when:
+            DRONE_BUILD_STATUS: failure
       message:
         - value: "Build: ${DRONE_BUILD_NUMBER} succeeded!"
           when:
             DRONE_BUILD_STATUS: success
         - value: "Build: ${DRONE_BUILD_NUMBER} failed!"
-      # fields:
-      #   - title: Author
-      #     value: ${DRONE_COMMIT_AUTHOR}
+      fields:
+        - title: Author
+          value: ${DRONE_COMMIT_AUTHOR}
