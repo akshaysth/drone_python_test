@@ -11,6 +11,19 @@ steps:
       - echo world
       - python hello.py
   #      - python test.py
+  - name: docker
+    image: plugins/docker
+    settings:
+      registry: ghcr.io
+      username: akshaysth
+      password:
+        from_secret: github_token
+      repo: akshaysth/drone_python_test
+      tags:
+      - latest
+      - main
+
+
   - name: notification
     image: plugins/webhook
     settings:
@@ -19,21 +32,21 @@ steps:
         {
           "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}"
         }
-  - name: portainer
-    image: robkaandorp/drone-portainer
-    settings:
-      portainer_url: https://portainer.hyperios.space
-      portainer_username:
-        from_secret: portainer_username
-      portainer_password:
-        from_secret: portainer_password
-      endpoint: hyperios
-      registry: ghcr.io
-      image: akshaysth/drone_python_test
-      image_tag: ${DRONE_COMMIT_BRANCH}-${DRONE_BUILD_NUMBER}
-      stack_name: drone-python-test
-      standalone: false
-      #compose_environment:
+  # - name: portainer
+  #   image: robkaandorp/drone-portainer
+  #   settings:
+  #     portainer_url: https://portainer.hyperios.space
+  #     portainer_username:
+  #       from_secret: portainer_username
+  #     portainer_password:
+  #       from_secret: portainer_password
+  #     endpoint: hyperios
+  #     registry: ghcr.io
+  #     image: akshaysth/drone_python_test
+  #     image_tag: ${DRONE_COMMIT_BRANCH}-${DRONE_BUILD_NUMBER}
+  #     stack_name: drone-python-test
+  #     standalone: false
+  #     #compose_environment:
   #  - name: notification
   #    image: rmilewski/drone-rocket:latest
   #    when:
