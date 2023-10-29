@@ -47,9 +47,9 @@ steps:
       template: >
         {
           "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}",
-          "attachments": [
+          "attachments": [{
             "title": "Drone CI"
-          ]
+          }]
         }
 
   - name: build-notification
