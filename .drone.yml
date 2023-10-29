@@ -46,5 +46,5 @@ steps:
         from_secret: rocketchat_drone_webhook
       template: >
         {
-        "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}: ${DRONE_BUILD_LINK}",
+          "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}: ${DRONE_BUILD_LINK}"
         }
