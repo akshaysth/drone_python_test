@@ -42,7 +42,8 @@ steps:
   - name: notification
     image: plugins/webhook
     settings:
-      urls: "https://rocket.hyperios.space/hooks/65398b8e33c299ed89abc20c/chtNrvpjqx4vjQYL2KpcuTDr7RDHSu6W6SAJzdL9c7QAjwf8"
+      urls:
+        from_secret: rocketchat_drone_webhook
       template: >
         {
           "text": "Build ${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}",
