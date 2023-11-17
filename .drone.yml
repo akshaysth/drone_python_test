@@ -39,6 +39,12 @@ steps:
   #     standalone: false
   #     #compose_environment:
 
+  - name: codecov
+    image: robertstettner/drone-codecov
+    settings:
+      token:
+        from_secret: codecov_token
+
   - name: notification
     image: plugins/webhook
     settings:
