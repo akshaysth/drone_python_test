@@ -10,9 +10,11 @@ steps:
       - pytest --cov .
   - name: codecov
     image: robertstettner/drone-codecov
-    settings:
-      token:
+    environment:
+      CODECOV_TOKEN:
         from_secret: codecov_token
+    settings:
+      token: $CODECOV_TOKEN
 
   - name: notification
     image: plugins/webhook
