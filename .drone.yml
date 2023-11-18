@@ -8,7 +8,7 @@ steps:
     image: python:3
     commands:
       - pip3 install -r requirements.txt
-      - pytest --cov .
+      - coverage run -m pytest
   - name: codecov
     image: robertstettner/drone-codecov
     environment:
