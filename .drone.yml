@@ -12,7 +12,7 @@ steps:
     commands:
       - pip3 install -r requirements.txt
       - pytest --cov .
-      - echo $${CODECOV_TOKEN}
+      - echo $CODECOV_TOKEN
   - name: codecov
     image: robertstettner/drone-codecov
 
