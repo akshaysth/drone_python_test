@@ -8,38 +8,6 @@ steps:
     commands:
       - pip3 install -r requirements.txt
       - pytest --cov .
-      - curl -Os https://uploader.codecov.io/latest/linux/codecov
-      - chmod +x codecov
-      - ./codecov -t ${codecov_token}
-  #      - python test.py
-  # - name: build-and-push-docker-image
-  #   image: plugins/docker
-  #   settings:
-  #     registry: ghcr.io/v2
-  #     username: akshaysth
-  #     password:
-  #       from_secret: github_token
-  #     repo: ghcr.io/akshaysth/drone_python_test
-  #     tags:
-  #     - latest
-  #     auto_tag: true
-
-  # - name: portainer
-  #   image: robkaandorp/drone-portainer
-  #   settings:
-  #     portainer_url: https://portainer.hyperios.space
-  #     portainer_username:
-  #       from_secret: portainer_username
-  #     portainer_password:
-  #       from_secret: portainer_password
-  #     endpoint: hyperios
-  #     registry: ghcr.io
-  #     image: akshaysth/drone_python_test
-  #     image_tag: latest
-  #     stack_name: drone-python-test-stack
-  #     standalone: false
-  #     #compose_environment:
-
   - name: codecov
     image: robertstettner/drone-codecov
     settings:
