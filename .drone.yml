@@ -6,16 +6,14 @@ name: default
 steps:
   - name: greeting
     image: python:3
-    environment:
-      CODECOV_TOKEN:
-        from_secret: codecov_token
     commands:
       - pip3 install -r requirements.txt
       - pytest --cov .
-      - echo $CODECOV_TOKEN
   - name: codecov
     image: robertstettner/drone-codecov
-
+    environment:
+      CODECOV_TOKEN:
+        from_secret: codecov_token
     settings:
       token: ${CODECOV_TOKEN}
 
