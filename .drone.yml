@@ -11,7 +11,7 @@ steps:
         from_secret: codecov_token
     commands:
       - pip3 install -r requirements.txt
-      - pytest --cov app
+      - pytest --cov .
       - curl -Os https://uploader.codecov.io/latest/linux/codecov
       - chmod +x codecov
       - ./codecov -t ${CODECOV_TOKEN}
