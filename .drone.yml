@@ -10,6 +10,9 @@ steps:
       - echo hello
       - echo world
       - python hello.py
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov
+      - chmod +x codecov
+      - ./codecov -t ${codecov_token}
   #      - python test.py
   # - name: build-and-push-docker-image
   #   image: plugins/docker
