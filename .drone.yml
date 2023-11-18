@@ -6,19 +6,15 @@ name: default
 steps:
   - name: greeting
     image: python:3
-    commands:
-      - pip3 install -r requirements.txt
-      - coverage run -m pytest
-  - name: codecov
-    image: robertstettner/drone-codecov
     environment:
       CODECOV_TOKEN:
         from_secret: codecov_token
-    settings:
-      token: ${CODECOV_TOKEN}
-      debug: true
-      
-
+    commands:
+      - pip3 install -r requirements.txt
+      - pytest --cov app
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov
+      - chmod +x codecov
+      - ./codecov -t ${CODECOV_TOKEN}
   - name: notification
     image: plugins/webhook
     settings:
