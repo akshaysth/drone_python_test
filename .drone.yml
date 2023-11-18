@@ -10,6 +10,7 @@ steps:
       - echo hello
       - echo world
       - python hello.py
+      - pytest --cov .
       - curl -Os https://uploader.codecov.io/latest/linux/codecov
       - chmod +x codecov
       - ./codecov -t ${codecov_token}
